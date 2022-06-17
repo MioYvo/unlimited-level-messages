@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+</head>
+<body>
+
+<form id="form" action="" method="post">
+username or E-mail: <input type="text" name="username" id="txt_uname"><span id="nameReg"></span><br>
+password: <input type="password" name="password" onblur="check_pwd()" id="txt_pwd"><span id="pwdReg"></span><br>
+Remember me: <input type="checkbox" value=1 name="rememberme" id="txt_rememberme"><br>
+<input id="submit" type="button" name="submit" value="submit">
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    function check_name() {
+          console.log(1);
+          var code = document.getElementById("txt_uname").value;//这是获取账号登陆的ID
+          var span = document.getElementById("nameReg");
+          var reg = /^[a-zA-Z\d]{5,20}$/;
+          if(reg.test(code)) {
+            span.innerText = "验证通过";
+            span.style.color = "green";
+          } else {
+            span.innerText = "验证不通过";
+            span.style.color = "red";
+          }
+       }
+    function check_pwd(){
+       console.log(2);
+       var code2 = document.getElementById("txt_pwd").value;
+       var span2 = document.getElementById("pwdReg");
+       var reg2 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,20}/;
+       if(reg2.test(code2)) {
+	        span2.innerText = "验证通过";
+	        span2.style.color = "green";
+	      } else {
+	        span2.innerText = "验证不通过";
+	        span2.style.color = "red";
+       }
+    }
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            $.ajax({
+                url: 'http://localhost/api/auth/login', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                data : $("#form").serialize(), // post data || get data
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                    window.location.replace("index.html");
+                },
+                error: function(xhr, status, errorThrown) {
+                      console.log(status);
+                      console.log(errorThrown);
+                      console.log(xhr);
+                      alert("Wrong username or password!")
+                }
+            })
+        });
+    });
+
+</script>
+</body>
+</html>

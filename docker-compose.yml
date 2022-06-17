@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+  proxy:
+    image: traefik:2.7.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command:
+      [
+        # api
+        "--api",
+        "--api.dashboard=true",
+        "--api.insecure=true",
+        # log
+        "--log",
+        "--log.level=info",
+        "--accesslog=false",
+        # docker
+        "--providers.docker",
+        "--providers.docker.exposedbydefault=false",
+        # entryPoints
+        "--entryPoints.http.address=:80",
+      ]
+    ports:
+      - "80:80"
+      - "8080:8080"   # for traefik dashboard
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"
+
+  backend:
+    scale: 3
+    build:
+      context: backend/
+      dockerfile: deploy/Dockerfile
+    environment:
+      ENV_FOR_DYNACONF: production
+#      BACKEND_DB_FORCE_RECREATE: 1  # Force truncate and recreate all tables
+    ports:
+      - "5000"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.backend-http.rule=PathPrefix(`/api`)
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"
+    volumes:
+      - ./data:/data
+
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    expose:
+      - "80"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.frontend-http.rule=PathPrefix(`/`)
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "1"

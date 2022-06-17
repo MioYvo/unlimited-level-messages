@@ -1,0 +1,16 @@
+[default]
+PERMANENT_SESSION_LIFETIME_DAYS = 30
+DB_CONN = "/home/mio/Codes/recruitment-dev-python-backend-comments-tree-homework-RusiLiu/backend/identifier.sqlite"
+DB_FORCE_RECREATE = false
+POST_BODY_MIN_WORDS_LENGTH = 3
+POST_BODY_MAX_WORDS_LENGTH = 200
+POST_TITLE_MIN_WORDS_LENGTH = 1
+POST_TITLE_MAX_WORDS_LENGTH = 20
+COMMENT_BODY_MIN_WORDS_LENGTH = 3
+COMMENT_BODY_MAX_WORDS_LENGTH = 200
+
+[development]
+DB_CONN = "/home/mio/Codes/recruitment-dev-python-backend-comments-tree-homework-RusiLiu/backend/identifier.sqlite"
+
+[production]
+DB_CONN = "/data/flaskr.sqlite"

@@ -1,0 +1,22 @@
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+atomicwrites==1.4.0; python_version >= "3.7" and python_full_version < "3.0.0" and sys_platform == "win32" or sys_platform == "win32" and python_version >= "3.7" and python_full_version >= "3.4.0"
+attrs==21.4.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
+click==8.1.3; python_version >= "3.7"
+colorama==0.4.4; python_version >= "3.7" and python_full_version < "3.0.0" and sys_platform == "win32" and platform_system == "Windows" or sys_platform == "win32" and python_version >= "3.7" and python_full_version >= "3.5.0" and platform_system == "Windows"
+contextlib2==21.6.0; python_version >= "3.6"
+dynaconf==3.1.8; python_version >= "3.7"
+flask==2.1.2; python_version >= "3.7"
+gunicorn==20.1.0; python_version >= "3.5"
+iniconfig==1.1.1; python_version >= "3.7"
+itsdangerous==2.1.2; python_version >= "3.7"
+jinja2==3.1.2; python_version >= "3.7"
+markupsafe==2.1.1; python_version >= "3.7"
+packaging==21.3; python_version >= "3.7"
+pluggy==1.0.0; python_version >= "3.7"
+py==1.11.0; python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.7"
+pyparsing==3.0.9; python_full_version >= "3.6.8" and python_version >= "3.7"
+pytest==7.1.2; python_version >= "3.7"
+schema==0.7.5
+tomli==2.0.1; python_version >= "3.7"
+werkzeug==2.1.2; python_version >= "3.7"
